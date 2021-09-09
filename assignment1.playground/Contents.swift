@@ -1,6 +1,4 @@
 import UIKit
-
-import UIKit
 import SwiftUI
 
 //Problem 1
@@ -17,22 +15,22 @@ print("-", reversedArray)
 //Probelm 2
 //Find prime number inside of array
 //Set an array of numbers
-print("Problem 3 - Find prime number inside of an array:")
-var prob2 = [2,3,4,5,6,7,8,9,10,11]
+print("Problem 2 - Find prime number inside of an array:")
+var prob2 = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
 //Set an empty array for the prime numbers to be appened to
 var primeNums: [Int] = []
-//Declare Boolean thats set to false by default
-var isPrime = false
 //Write a for loop to iterate over the array of numbers
 for prime in prob2 {
-    if (primeNums.count % 2 == 0) {
-        isPrime = true
-    }
-    if isPrime == true {
-        primeNums.append(prime)
+    for x in 2..<prime {
+        if prime % x == 0 {
+            break;
+        }
+        if prime % x != 0 && x == prime - 1 {
+            primeNums.append(prime)
+        }
     }
 }
-print("-", primeNums)
+print("-Prime numbers are", primeNums)
 
 //Problem 3 / Find even and odd numbers in an array
 print("Problem 3 - Find even and odd numbers in an array:")
@@ -59,27 +57,32 @@ print("-The Odd numbers of the array are", "\(oddNums)")
 func calculateFactorial(someType: Double) -> Double {
     if someType == 1 {
         return 1
+    } else if someType < 0 {
+        return 0
     } else {
         return someType * calculateFactorial(someType:someType - 1)
     }
 }
 //Enter the number you wish to test into "(someType: _ )"
-let fact = calculateFactorial(someType: 4)
-print("Probelm 4 - Find Factorial of a given number:")
+let fact = calculateFactorial(someType: -4)
+
+print("Problem 4 - Find Factorial of a given number:")
 print("-The Factorial is: ",fact)
 
 //Problem 5 & 6 / produce a grouped array from the given array [1,2,3,4,5,6]
-
+print("Problem 5 & 6 - Given an array [ , , , ] produce [[],[],[]]")
 var givenArray = [1,2,3,4,5,6,7]
-var groupedArray: [Int] = []
-
-for i in givenArray {
-    if (givenArray.count == i){
-        givenArray.remove(at: givenArray.count - 1)
+var resultArray: [[Int]] = []
+var tempArray: [Int] = []
+//Set group size = 2
+let groupSize = 2
+for item in givenArray {
+    tempArray.append(item)
+    if tempArray.count == groupSize {
+        resultArray.append(tempArray)
+        tempArray.removeAll()
     }
-    groupedArray.append(i)
 }
-print(groupedArray)
-//For the last problem this code will Remove the 7. Probobly would be placed in the for loop.
-//  givenArray.remove(at: givenArray.count - 1)
+print("The result array:", resultArray)
+
 
